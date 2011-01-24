@@ -27,3 +27,5 @@ def build(ctx):
                    'include'],
         lib     = 'Core Cint Tree RIO Thread Hist Graf MathCore Matrix Net',
         )
+
+    ctx.install_files('${PREFIX}/include', 'include/croot.h')
