@@ -117,6 +117,31 @@ CRoot_ObjArray
 CRoot_Tree_GetListOfLeaves(CRoot_Tree self);
 
 CROOT_API
+double*
+CRoot_Tree_GetVal(CRoot_Tree self,
+                  int32_t i);
+
+CROOT_API
+double*
+CRoot_Tree_GetV1(CRoot_Tree self);
+
+CROOT_API
+double*
+CRoot_Tree_GetV2(CRoot_Tree self);
+
+CROOT_API
+double*
+CRoot_Tree_GetV3(CRoot_Tree self);
+
+CROOT_API
+double*
+CRoot_Tree_GetV4(CRoot_Tree self);
+
+CROOT_API
+double*
+CRoot_Tree_GetW(CRoot_Tree self);
+
+CROOT_API
 int64_t
 CRoot_Tree_LoadTree(CRoot_Tree self,
                     int64_t entry);

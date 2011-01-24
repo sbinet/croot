@@ -119,6 +119,43 @@ CRoot_Tree_GetListOfLeaves(CRoot_Tree self)
   return (CRoot_ObjArray)(((TTree*)self)->GetListOfLeaves());
 }
 
+double*
+CRoot_Tree_GetVal(CRoot_Tree self,
+                  int32_t i)
+{
+  return (double*)(((TTree*)self)->GetVal(i));
+}
+
+double*
+CRoot_Tree_GetV1(CRoot_Tree self)
+{
+  return (double*)(((TTree*)self)->GetV1());
+}
+
+double*
+CRoot_Tree_GetV2(CRoot_Tree self)
+{
+  return (double*)(((TTree*)self)->GetV2());
+}
+
+double*
+CRoot_Tree_GetV3(CRoot_Tree self)
+{
+  return (double*)(((TTree*)self)->GetV3());
+}
+
+double*
+CRoot_Tree_GetV4(CRoot_Tree self)
+{
+  return (double*)(((TTree*)self)->GetV4());
+}
+
+double*
+CRoot_Tree_GetW(CRoot_Tree self)
+{
+  return (double*)(((TTree*)self)->GetW());
+}
+
 int64_t
 CRoot_Tree_LoadTree(CRoot_Tree self,
                     int64_t entry)
