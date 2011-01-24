@@ -2,6 +2,7 @@
 
 #include "TBranch.h"
 #include "TTree.h"
+#include "TChain.h"
 #include "TFile.h"
 
 #include "TObject.h"
