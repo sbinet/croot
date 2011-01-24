@@ -1,0 +1,23 @@
+#
+
+top = '.'
+out = '__build__'
+
+def options(ctx):
+    ctx.load('compiler_c')
+    ctx.load('compiler_cxx')
+    
+def configure(ctx):
+
+    ctx.load('compiler_c')
+    ctx.load('compiler_cxx')
+    
+def build(ctx):
+
+    ctx(features='c cprogram',
+        source  = 'ex_01.c',
+        target  = 'croot-ex-01',
+        lib     = 'croot',
+        )
+
+    #ctx.install_files('${PREFIX}/include', 'include/croot.h')
