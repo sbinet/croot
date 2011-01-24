@@ -81,6 +81,15 @@ CRoot_Tree_Branch(CRoot_Tree self,
                                                bufsize, splitlevel));
 }
 
+CRoot_Branch
+CRoot_Tree_Branch2(CRoot_Tree self,
+                   const char *name, void *address, const char *leaflist,
+                   int32_t bufsize)
+{
+  return (CRoot_Branch)(((TTree*)self)->Branch(name, address, 
+                                               leaflist, bufsize));
+}
+
 int
 CRoot_Tree_Fill(CRoot_Tree self)
 {

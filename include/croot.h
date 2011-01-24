@@ -91,6 +91,12 @@ CRoot_Tree_Branch(CRoot_Tree self,
                   void *addobj, int32_t bufsize, int32_t splitlevel);
 
 CROOT_API
+CRoot_Branch
+CRoot_Tree_Branch2(CRoot_Tree self,
+                   const char *name, void *address, const char *leaflist,
+                   int32_t bufsize);
+
+CROOT_API
 int
 CRoot_Tree_Fill(CRoot_Tree self);
 
