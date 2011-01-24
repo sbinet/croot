@@ -255,6 +255,10 @@ CRoot_File_Get(CRoot_File self, const char *namecycle);
 
 CROOT_API
 CRoot_Bool
+CRoot_File_IsOpen(CRoot_File self);
+
+CROOT_API
+CRoot_Bool
 CRoot_File_ReadBuffer(CRoot_File self,
                       char *buf, int64_t pos, int32_t len);
 

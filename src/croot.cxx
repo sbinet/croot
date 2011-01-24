@@ -173,7 +173,7 @@ CRoot_Tree_MakeClass(CRoot_Tree self,
 CRoot_Bool
 CRoot_Tree_Notify(CRoot_Tree self)
 {
-  return (Bool_t)(((TTree*)self)->Notify());
+  return (CRoot_Bool)(((TTree*)self)->Notify());
 }
 
 void
@@ -302,20 +302,26 @@ CRoot_File_Get(CRoot_File self, const char *namecycle)
 }
 
 CRoot_Bool
+CRoot_File_IsOpen(CRoot_File self)
+{
+  return (CRoot_Bool)(((TFile*)self)->IsOpen());
+}
+
+CRoot_Bool
 CRoot_File_ReadBuffer(CRoot_File self,
                       char *buf, int64_t pos, int32_t len)
 {
-  return (Bool_t)(((TFile*)self)->ReadBuffer(buf, pos, len));
+  return (CRoot_Bool)(((TFile*)self)->ReadBuffer(buf, pos, len));
 }
 
 CRoot_Bool
 CRoot_File_ReadBuffers(CRoot_File self,
                        char *buf, int64_t *pos, int32_t *len, int32_t nbuf)
 {
-  return (Bool_t)(((TFile*)self)->ReadBuffers(buf, 
-                                              (Long64_t*)pos, 
-                                              (Int_t*)len, 
-                                              nbuf));
+  return (CRoot_Bool)(((TFile*)self)->ReadBuffers(buf, 
+                                                  (Long64_t*)pos, 
+                                                  (Int_t*)len, 
+                                                  nbuf));
 }
 
 int32_t
