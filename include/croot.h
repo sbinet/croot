@@ -18,6 +18,32 @@ typedef const char CRoot_Option;
 /* TObject */
 typedef void* CRoot_Object;
 
+const char*
+CRoot_Object_ClassName(CRoot_Object self);
+
+CRoot_Object
+CRoot_Object_Clone(CRoot_Object self,
+                   const char *newname);
+
+CRoot_Object
+CRoot_Object_FindObject(CRoot_Object self, 
+                        const char *name);
+
+const char*
+CRoot_Object_GetName(CRoot_Object self);
+
+const char*
+CRoot_Object_GetTitle(CRoot_Object self);
+
+CRoot_Bool
+CRoot_Object_InheritsFrom(CRoot_Object self, 
+                          const char *classname);
+
+void
+CRoot_Object_Print(CRoot_Object self,
+                   CRoot_Option *option);
+
+
 /* TObjArray */
 typedef void *CRoot_ObjArray;
 

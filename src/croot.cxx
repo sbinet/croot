@@ -7,6 +7,54 @@
 #include "TObject.h"
 #include "TObjArray.h"
 
+/* TObject */
+const char*
+CRoot_Object_ClassName(CRoot_Object self)
+{
+  return ((TObject*)self)->ClassName();
+}
+
+CRoot_Object
+CRoot_Object_Clone(CRoot_Object self,
+                   const char *newname)
+{
+  return (TObject*)(((TObject*)self)->Clone(newname));
+}
+
+CRoot_Object
+CRoot_Object_FindObject(CRoot_Object self, 
+                        const char *name)
+{
+  return (TObject*)(((TObject*)self)->FindObject(name));
+}
+
+const char*
+CRoot_Object_GetName(CRoot_Object self)
+{
+  return ((TObject*)self)->GetName();
+}
+
+const char*
+CRoot_Object_GetTitle(CRoot_Object self)
+{
+  return ((TObject*)self)->GetTitle();
+}
+
+CRoot_Bool
+CRoot_Object_InheritsFrom(CRoot_Object self, 
+                          const char *classname)
+{
+  return (CRoot_Bool)(((TObject*)self)->InheritsFrom(classname));
+}
+
+void
+CRoot_Object_Print(CRoot_Object self,
+                   CRoot_Option *option)
+{
+  return ((TObject*)self)->Print((Option_t*)option);
+}
+
+
 /* TTree */
 CRoot_Tree
 CRoot_Tree_New(const char *name, const char *title, int32_t splitlevel)
