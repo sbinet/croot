@@ -11,7 +11,9 @@ the structure is quite simple::
   /* CRoot */
   CRoot_RootClass_SomeMethod(...)
 
-Constructors are named ``CRoot_RootClass_New(...)`` and destructors ``CRoot_RootClass_Delete(...)``
+Constructors are named ``CRoot_RootClass_new(...)`` and destructors ``CRoot_RootClass_delete(...)``
+
+(Do *NOT* confuse them with the New/Delete methods which could exist for some classes !)
 
 build instructions
 ------------------

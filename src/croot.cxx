@@ -58,14 +58,14 @@ CRoot_Object_Print(CRoot_Object self,
 
 /* TTree */
 CRoot_Tree
-CRoot_Tree_New(const char *name, const char *title, int32_t splitlevel)
+CRoot_Tree_new(const char *name, const char *title, int32_t splitlevel)
 {
   TTree *self = new TTree(name, title, splitlevel);
   return (CRoot_Tree)self;
 }
 
 void
-CRoot_Tree_Delete(CRoot_Tree self)
+CRoot_Tree_delete(CRoot_Tree self)
 {
   TTree *tree = (TTree*)self;
   delete tree;
@@ -228,14 +228,14 @@ CRoot_Tree_Write(CRoot_Tree self,
 /* TChain */
 
 CRoot_Chain
-CRoot_Chain_New(const char *name, const char *title)
+CRoot_Chain_new(const char *name, const char *title)
 {
   TChain *self = new TChain(name, title);
   return (CRoot_Chain)self;
 }
 
 void
-CRoot_Chain_Delete(CRoot_Chain self)
+CRoot_Chain_delete(CRoot_Chain self)
 {
   TChain *tree = (TChain*)self;
   delete tree;

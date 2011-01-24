@@ -78,11 +78,11 @@ typedef void* CRoot_Tree;
 
 CROOT_API
 CRoot_Tree
-CRoot_Tree_New(const char *name, const char *title, int32_t splitlevel);
+CRoot_Tree_new(const char *name, const char *title, int32_t splitlevel);
 
 CROOT_API
 void
-CRoot_Tree_Delete(CRoot_Tree self);
+CRoot_Tree_delete(CRoot_Tree self);
 
 CROOT_API
 CRoot_Branch
@@ -194,11 +194,11 @@ typedef void* CRoot_Chain;
 
 CROOT_API
 CRoot_Chain
-CRoot_Chain_New(const char *name, const char *title);
+CRoot_Chain_new(const char *name, const char *title);
 
 CROOT_API
 void
-CRoot_Chain_Delete(CRoot_Chain self);
+CRoot_Chain_delete(CRoot_Chain self);
 
 CROOT_API
 int32_t
