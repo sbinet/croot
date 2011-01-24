@@ -238,9 +238,12 @@ CRoot_File
 CRoot_File_Open(const char *name, 
                 CRoot_Option *option,
                 const char *ftitle,
-                int32_t compress)
+                int32_t compress,
+                int32_t netopt)
 {
-  return (CRoot_File)(TFile::Open(name, (Option_t*)option, ftitle, compress));
+  return (CRoot_File)(TFile::Open(name, (Option_t*)option, 
+                                  ftitle, 
+                                  compress, netopt));
 }
 
 void

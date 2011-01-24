@@ -163,7 +163,8 @@ CRoot_File
 CRoot_File_Open(const char *name, 
                 CRoot_Option *option,
                 const char *ftitle,
-                int32_t compress);
+                int32_t compress,
+                int32_t netopt);
 
 void
 CRoot_File_Close(CRoot_File self, CRoot_Option *option);
