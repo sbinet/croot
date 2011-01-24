@@ -187,6 +187,50 @@ CRoot_Tree_Write(CRoot_Tree self,
   return ((TTree*)self)->Write(name, option, bufsize);
 }
 
+/* TChain */
+
+CRoot_Chain
+CRoot_Chain_New(const char *name, const char *title)
+{
+  TChain *self = new TChain(name, title);
+  return (CRoot_Chain)self;
+}
+
+void
+CRoot_Chain_Delete(CRoot_Chain self)
+{
+  TChain *tree = (TChain*)self;
+  delete tree;
+  self = 0;
+}
+
+int32_t
+CRoot_Chain_Add(CRoot_Chain self,
+                const char *name, int64_t nentries)
+{
+  return ((TChain*)self)->Add(name, nentries);
+}
+
+int32_t
+CRoot_Chain_AddFile(CRoot_Chain self,
+                    const char *name, int64_t nentries, const char *tname)
+{
+  return ((TChain*)self)->AddFile(name, nentries, tname);
+}
+
+int64_t
+CRoot_Chain_GetEntries(CRoot_Chain self)
+{
+  return ((TChain*)self)->GetEntries();
+}
+
+int32_t
+CRoot_Chain_GetEntry(CRoot_Chain self,
+                     int64_t entry, int32_t getall)
+{
+  return ((TChain*)self)->GetEntry(entry, getall);
+}
+
 
 /* TFile */
 CRoot_File
