@@ -1,0 +1,23 @@
+CRoot
+=====
+
+a simple work-in-progress C-API binding to the C++ ROOT framework.
+
+the structure is quite simple::
+
+  //C++
+  TRootClass::SomeMethod(...)
+
+  /* CRoot */
+  CRoot_RootClass_SomeMethod(...)
+
+Constructors are named ``CRoot_RootClass_New(...)`` and destructors ``CRoot_RootClass_Delete(...)``
+
+build instructions
+------------------
+
+::
+
+  $ ./waf configure
+  $ ./waf build
+  $ ./waf install
