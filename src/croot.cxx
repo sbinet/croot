@@ -8,6 +8,7 @@
 #include "TObject.h"
 #include "TObjArray.h"
 
+#include "TMath.h"
 #include "TRandom.h"
 
 /* TObject */
@@ -386,3 +387,163 @@ CRoot_Random_Rndm(CRoot_Random self,
   return ((TRandom*)self)->Rndm(i);
 }
 
+/* TMath */
+
+
+double
+CRoot_Math_Sin(double x)
+{
+  return TMath::Sin(x);
+}
+
+
+double
+CRoot_Math_Cos(double x)
+{
+  return TMath::Cos(x);
+}
+
+double
+CRoot_Math_Tan(double x)
+{
+  return TMath::Tan(x);
+}
+
+double
+CRoot_Math_SinH(double x)
+{
+  return TMath::SinH(x);
+}
+
+double
+CRoot_Math_CosH(double x)
+{
+  return TMath::CosH(x);
+}
+
+double
+CRoot_Math_TanH(double x)
+{
+  return TMath::TanH(x);
+}
+
+double
+CRoot_Math_ASin(double x)
+{
+  return TMath::ASin(x);
+}
+
+double
+CRoot_Math_ACos(double x)
+{
+  return TMath::ACos(x);
+}
+
+double
+CRoot_Math_ATan(double x)
+{
+  return TMath::ATan(x);
+}
+
+double
+CRoot_Math_ATan2(double x, double y)
+{
+  return TMath::ATan2(x,y);
+}
+
+double
+CRoot_Math_ASinH(double x)
+{
+  return TMath::ASinH(x);
+}
+
+double
+CRoot_Math_ACosH(double x)
+{
+  return TMath::ACosH(x);
+}
+
+double
+CRoot_Math_ATanH(double x)
+{
+  return TMath::ATanH(x);
+}
+
+double
+CRoot_Math_Hypot(double x, double y)
+{
+  return TMath::Hypot(x, y);
+}
+
+double
+CRoot_Math_Sqrt(double x)
+{
+  return TMath::Sqrt(x);
+}
+
+double
+CRoot_Math_Ceil(double x)
+{
+  return TMath::Ceil(x);
+}
+
+int32_t
+CRoot_Math_CeilNint(double x)
+{
+  return TMath::CeilNint(x);
+}
+
+double
+CRoot_Math_Floor(double x)
+{
+  return TMath::Floor(x);
+}
+
+int32_t
+CRoot_Math_FloorNint(double x)
+{
+  return TMath::FloorNint(x);
+}
+
+double
+CRoot_Math_Exp(double x)
+{
+  return TMath::Exp(x);
+}
+
+double
+CRoot_Math_Ldexp(double x, int32_t exp)
+{
+  return TMath::Ldexp(x, exp);
+}
+
+double
+CRoot_Math_Factorial(int32_t i)
+{
+  return TMath::Factorial(i);
+}
+
+
+double
+CRoot_Math_Power(double x, double y)
+{
+  return TMath::Power(x, y);
+}
+
+double
+CRoot_Math_Log(double x)
+{
+  return TMath::Log(x);
+}
+
+double
+CRoot_Math_Log2(double x)
+{
+  return TMath::Log2(x);
+}
+ 
+double
+CRoot_Math_Log10(double x)
+{
+  return TMath::Log10(x);
+}

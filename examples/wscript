@@ -28,4 +28,10 @@ def build(ctx):
         lib     = 'croot',
         )
 
+    ctx(features='c cprogram',
+        source  = 'ex_tree_03.c',
+        target  = 'croot-ex-tree-03',
+        lib     = 'croot',
+        )
+
     #ctx.install_files('${PREFIX}/include', 'include/croot.h')
