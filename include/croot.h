@@ -248,6 +248,10 @@ CRoot_File_Open(const char *name,
                 int32_t netopt);
 
 CROOT_API
+CRoot_Bool
+CRoot_File_cd(CRoot_File self, const char *path);
+
+CROOT_API
 void
 CRoot_File_Close(CRoot_File self, CRoot_Option *option);
 

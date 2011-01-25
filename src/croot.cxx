@@ -295,6 +295,12 @@ CRoot_File_Open(const char *name,
                                   compress, netopt));
 }
 
+CRoot_Bool
+CRoot_File_cd(CRoot_File self, const char *path)
+{
+  return (CRoot_Bool)(((TFile*)self)->cd(path));
+}
+
 void
 CRoot_File_Close(CRoot_File self, CRoot_Option *option)
 {
