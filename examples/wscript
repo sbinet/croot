@@ -11,6 +11,8 @@ def configure(ctx):
 
     ctx.load('compiler_c')
     ctx.load('compiler_cxx')
+
+    ctx.env.append_unique('CFLAGS', ['-std=c99'])
     
 def build(ctx):
 

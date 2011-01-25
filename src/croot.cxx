@@ -8,6 +8,8 @@
 #include "TObject.h"
 #include "TObjArray.h"
 
+#include "TRandom.h"
+
 /* TObject */
 const char*
 CRoot_Object_ClassName(CRoot_Object self)
@@ -345,5 +347,42 @@ CRoot_File_Write(CRoot_File self,
                  const char *name, int32_t opt, int32_t bufsiz)
 {
   return ((TFile*)self)->Write(name, opt, bufsiz);
+}
+
+/* TRandom */
+CRoot_Random CRoot_gRandom = (CRoot_Random)gRandom;
+
+int32_t
+CRoot_Random_Binomial(CRoot_Random self, int32_t ntot, double prob)
+{
+  return ((TRandom*)self)->Binomial(ntot, prob);
+}
+
+double
+CRoot_Random_Gaus(CRoot_Random self,
+                  double mean, double sigma)
+{
+  return ((TRandom*)self)->Gaus(mean, sigma);
+}
+
+void
+CRoot_Random_Rannorf(CRoot_Random self,
+                     float *a, float *b)
+{
+  return ((TRandom*)self)->Rannor(*a, *b);
+}
+
+void
+CRoot_Random_Rannord(CRoot_Random self,
+                     double *a, double *b)
+{
+  return ((TRandom*)self)->Rannor(*a, *b);
+}
+
+double
+CRoot_Random_Rndm(CRoot_Random self,
+                  int32_t i)
+{
+  return ((TRandom*)self)->Rndm(i);
 }
 
