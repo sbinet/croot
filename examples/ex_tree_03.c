@@ -60,9 +60,9 @@ void tree3w()
     CRoot_Tree_Fill(t3);
     CRoot_Tree_Fill(t3f);
   }
-  CRoot_File_cd(f);
+  CRoot_File_cd(f, 0);
   CRoot_Tree_Write(t3, 0, 0, 0);
-  CRoot_File_cd(fr);
+  CRoot_File_cd(fr, 0);
   CRoot_Tree_Write(t3f, 0, 0, 0);
 }
 
@@ -70,7 +70,7 @@ void tree3r()
 {
   CRoot_File f = CRoot_File_Open("tree3.root", "read", 
                                  "", 1, 0);
-  CRoot_Tree t3 = (CRoot_Tree)CRoot_Object_Get(f, "t3");
+  CRoot_Tree t3 = (CRoot_Tree)CRoot_File_Get(f, "t3");
   printf(":: entries: %i\n", CRoot_Tree_GetEntries(t3));
 }
 
