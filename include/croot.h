@@ -123,6 +123,10 @@ CRoot_ObjArray
 CRoot_Tree_GetListOfLeaves(CRoot_Tree self);
 
 CROOT_API
+int64_t
+CRoot_Tree_GetSelectedRows(CRoot_Tree self);
+
+CROOT_API
 double*
 CRoot_Tree_GetVal(CRoot_Tree self,
                   int32_t i);
@@ -224,9 +228,6 @@ CROOT_API
 int32_t
 CRoot_Chain_GetEntry(CRoot_Chain self,
                      int64_t entry, int32_t getall);
-
-/* TBranch */
-typedef void* CRoot_Branch;
 
 /* TFile */
 typedef void* CRoot_File;

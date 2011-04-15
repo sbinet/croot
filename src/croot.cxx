@@ -131,6 +131,12 @@ CRoot_Tree_GetListOfLeaves(CRoot_Tree self)
   return (CRoot_ObjArray)(((TTree*)self)->GetListOfLeaves());
 }
 
+int64_t
+CRoot_Tree_GetSelectedRows(CRoot_Tree self)
+{
+  return ((TTree*)self)->GetSelectedRows();
+}
+
 double*
 CRoot_Tree_GetVal(CRoot_Tree self,
                   int32_t i)
