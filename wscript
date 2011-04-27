@@ -29,3 +29,6 @@ def build(ctx):
         )
 
     ctx.install_files('${PREFIX}/include', 'include/croot.h')
+
+    ctx.recurse('examples')
+    
