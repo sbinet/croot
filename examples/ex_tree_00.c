@@ -28,7 +28,7 @@ void tree0(CRoot_File f)
   CRoot_Tree_Branch2(tree, "evt_b_t", &e->b.t, "evt_b_t/D", bufsiz);
 
   /* fill some events with random numbers */
-  int32_t nevents = 10000;
+  int32_t nevents = 10000000;
   for (int32_t iev=0; iev<nevents; iev++) {
     if (iev%1000 == 0) {
       printf("processing event %i...\n", iev);
