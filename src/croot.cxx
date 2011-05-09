@@ -11,6 +11,8 @@
 #include "TMath.h"
 #include "TRandom.h"
 
+#include "Api.h"
+
 /* TObject */
 const char*
 CRoot_Object_ClassName(CRoot_Object self)
@@ -559,3 +561,118 @@ CRoot_Math_Log10(double x)
 {
   return TMath::Log10(x);
 }
+
+
+/* -- CINT-API -- */
+
+CRoot_Cint_TagInfo
+CRoot_Cint_TagInfo_new()
+{
+  G__linked_taginfo *self = new G__linked_taginfo;
+  return (CRoot_Cint_TagInfo)self;
+}
+
+void
+CRoot_Cint_TagInfo_delete(CRoot_Cint_TagInfo self)
+{
+  G__linked_taginfo *ti = (G__linked_taginfo*)self;
+  delete ti;
+  self = 0;
+}
+
+void
+CRoot_Cint_TagInfo_SetTagName(CRoot_Cint_TagInfo self, const char* tagname)
+{
+  ((G__linked_taginfo*)self)->tagname = tagname;
+}
+
+void
+CRoot_Cint_TagInfo_SetTagType(CRoot_Cint_TagInfo self, char tagtype)
+{
+  ((G__linked_taginfo*)self)->tagtype = tagtype;  
+}
+
+void
+CRoot_Cint_TagInfo_SetTagNum(CRoot_Cint_TagInfo self, short tagnum)
+{
+  ((G__linked_taginfo*)self)->tagnum = tagnum;
+}
+
+const char*
+CRoot_Cint_TagInfo_GetTagName(CRoot_Cint_TagInfo self)
+{
+  return ((G__linked_taginfo*)self)->tagname;
+}
+
+char
+CRoot_Cint_TagInfo_GetTagType(CRoot_Cint_TagInfo self)
+{
+  return ((G__linked_taginfo*)self)->tagtype;
+}
+
+short
+CRoot_Cint_TagInfo_GetTagNum(CRoot_Cint_TagInfo self)
+{
+  return ((G__linked_taginfo*)self)->tagnum;
+}
+
+int
+CRoot_Cint_TagInfo_GetLinkedTagNum(CRoot_Cint_TagInfo self)
+{
+  return G__get_linked_tagnum((G__linked_taginfo*)self);
+}
+
+int
+CRoot_Cint_Defined_TagName(const char* tagname, int noerror)
+{
+  return G__defined_tagname(tagname, noerror);
+}
+
+int
+CRoot_Cint_TagTable_Setup(int tagnum, int size, int cpplink, int isabstract,
+                          const char* comment, 
+                          CRoot_Cint_incsetup setup_memvar,
+                          CRoot_Cint_incsetup setup_memfunc)
+{
+  return G__tagtable_setup
+    (tagnum,
+     size,
+     cpplink,
+     isabstract,
+     comment,
+     (G__incsetup)setup_memvar,
+     (G__incsetup)setup_memfunc);
+}
+
+int
+CRoot_Cint_Tag_MemVar_Setup(int tagnum)
+{
+  return G__tag_memvar_setup(tagnum);
+}
+
+int
+CRoot_Cint_MemVar_Setup(void *p, int type, int reftype,
+                        int constvar, 
+                        int tagnum,
+                        int typenum,
+                        int statictype,
+                        int var_access,
+                        const char* expr,
+                        int definemacro,
+                        const char* comment)
+{
+  return G__memvar_setup(p, type, reftype, constvar, tagnum, 
+                         typenum,
+                         statictype,
+                         var_access,
+                         expr,
+                         definemacro,
+                         comment);
+}
+ 
+int
+CRoot_Cint_Tag_MemVar_Reset()
+{
+  return G__tag_memvar_reset();
+}
+
