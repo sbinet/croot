@@ -564,7 +564,7 @@ CRoot_Math_Log10(double x)
 
 
 /* -- CINT-API -- */
-
+#if 1
 CRoot_Cint_TagInfo
 CRoot_Cint_TagInfo_new()
 {
@@ -674,5 +674,579 @@ int
 CRoot_Cint_Tag_MemVar_Reset()
 {
   return G__tag_memvar_reset();
+}
+#endif
+
+// reflex API
+#include "Reflex/Reflex.h"
+
+void
+CRoot_Reflex_FireClassCallback(CRoot_Reflex_Type self)
+{
+  Reflex::FireClassCallback(*((Reflex::Type*)self));
+}
+
+void
+CRoot_Reflex_FireFunctionCallback(CRoot_Reflex_Member self)
+{
+  Reflex::FireFunctionCallback(*((Reflex::Member*)self));
+}
+
+CRoot_Reflex_Type
+CRoot_Reflex_Type_new(const char* name, unsigned int modifiers)
+{
+  Reflex::Type t = Reflex::TypeBuilder(name, modifiers);
+  return (CRoot_Reflex_Type)new Reflex::Type(t);
+}
+
+
+void
+CRoot_Reflex_Type_delete(CRoot_Reflex_Type self)
+{
+  Reflex::Type *t = (Reflex::Type*)self;
+  delete t;
+  self = 0;
+}
+
+void*
+CRoot_Reflex_Type_Id(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->Id();
+}
+
+size_t
+CRoot_Reflex_Type_ArrayLength(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->ArrayLength();
+}
+
+
+CRoot_Reflex_Type
+CRoot_Reflex_Type_ByName(const char *name)
+{
+  Reflex::Type t = Reflex::Type::ByName(std::string(name));
+  return (CRoot_Reflex_Type)new Reflex::Type(t);
+}
+
+
+CRoot_Reflex_Member
+CRoot_Reflex_Type_FunctionMemberAt(CRoot_Reflex_Type self,
+                                   size_t nth,
+                                   CRoot_Reflex_EMEMBERQUERY inh)
+{
+  Reflex::Member mbr = ((Reflex::Type*)self)->FunctionMemberAt
+    (nth, (Reflex::EMEMBERQUERY)inh);
+  return (CRoot_Reflex_Member)new Reflex::Member(mbr);
+}
+
+size_t
+CRoot_Reflex_Type_FunctionMemberSize(CRoot_Reflex_Type self,
+                                     CRoot_Reflex_EMEMBERQUERY inh)
+{
+  return ((Reflex::Type*)self)->FunctionMemberSize((Reflex::EMEMBERQUERY)inh);
+}
+
+CRoot_Reflex_Member
+CRoot_Reflex_Type_DataMemberAt(CRoot_Reflex_Type self,
+                               size_t nth,
+                               CRoot_Reflex_EMEMBERQUERY inh)
+{
+  Reflex::Member mbr = ((Reflex::Type*)self)->DataMemberAt
+    (nth, (Reflex::EMEMBERQUERY)inh);
+  return (CRoot_Reflex_Member)new Reflex::Member(mbr);
+}
+
+
+size_t
+CRoot_Reflex_Type_DataMemberSize(CRoot_Reflex_Type self,
+                                 CRoot_Reflex_EMEMBERQUERY inh)
+{
+  return ((Reflex::Type*)self)->DataMemberSize((Reflex::EMEMBERQUERY)inh);
+}
+
+
+bool
+CRoot_Reflex_Type_IsAbstract(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->IsAbstract();
+}
+
+
+bool
+CRoot_Reflex_Type_IsArray(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->IsArray();
+}
+
+bool
+CRoot_Reflex_Type_IsClass(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->IsClass();
+}
+
+bool
+CRoot_Reflex_Type_IsComplete(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->IsComplete();
+}
+
+bool
+CRoot_Reflex_Type_IsEquivalentTo(CRoot_Reflex_Type self,
+                                 CRoot_Reflex_Type other,
+                                 unsigned int modifiers_mask)
+{
+  return ((Reflex::Type*)self)->IsEquivalentTo(*((Reflex::Type*)other),
+                                               modifiers_mask);
+}
+
+bool
+CRoot_Reflex_Type_IsFunction(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->IsFunction();
+}
+
+bool
+CRoot_Reflex_Type_IsFundamental(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->IsFundamental();
+}
+
+bool
+CRoot_Reflex_Type_IsPrivate(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->IsPrivate();
+}
+
+bool
+CRoot_Reflex_Type_IsProtected(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->IsProtected();
+}
+
+bool
+CRoot_Reflex_Type_IsPublic(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->IsPublic();
+}
+
+bool
+CRoot_Reflex_Type_IsPointer(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->IsPointer();
+}
+
+bool
+CRoot_Reflex_Type_IsPointerToMember(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->IsPointerToMember();
+}
+
+bool
+CRoot_Reflex_Type_IsReference(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->IsReference();
+}
+
+bool
+CRoot_Reflex_Type_IsStruct(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->IsStruct();
+}
+
+bool
+CRoot_Reflex_Type_IsVirtual(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->IsVirtual();
+}
+
+CRoot_Reflex_Member
+CRoot_Reflex_Type_MemberAt(CRoot_Reflex_Type self,
+                           size_t nth,
+                           CRoot_Reflex_EMEMBERQUERY inh)
+{
+  Reflex::Member mbr = ((Reflex::Type*)self)->MemberAt(nth, (Reflex::EMEMBERQUERY)inh);
+  return (CRoot_Reflex_Member)new Reflex::Member(mbr);
+}
+
+
+size_t
+CRoot_Reflex_Type_MemberSize(CRoot_Reflex_Type self,
+                             CRoot_Reflex_EMEMBERQUERY inh)
+{
+  return ((Reflex::Type*)self)->MemberSize((Reflex::EMEMBERQUERY)inh);
+}
+
+
+const char*
+CRoot_Reflex_Type_Name(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->Name_c_str();
+}
+
+
+CRoot_Reflex_Type
+CRoot_Reflex_Type_RawType(CRoot_Reflex_Type self)
+{
+  Reflex::Type tt = ((Reflex::Type*)self)->RawType();
+  return (CRoot_Reflex_Type)new Reflex::Type(tt);
+}
+
+
+size_t
+CRoot_Reflex_Type_SizeOf(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->SizeOf();
+}
+
+CRoot_Reflex_Type
+CRoot_Reflex_Type_ToType(CRoot_Reflex_Type self)
+{
+  Reflex::Type t = ((Reflex::Type*)self)->ToType();
+  return (CRoot_Reflex_Type)new Reflex::Type(t);
+}
+
+
+CRoot_Reflex_Type
+CRoot_Reflex_Type_TypeAt(size_t nth)
+{
+  Reflex::Type t = Reflex::Type::TypeAt(nth);
+  return (CRoot_Reflex_Type)new Reflex::Type(t);
+}
+
+size_t
+CRoot_Reflex_Type_TypeSize()
+{
+  return Reflex::Type::TypeSize();
+}
+
+
+CRoot_Reflex_TYPE
+CRoot_Reflex_Type_TypeType(CRoot_Reflex_Type self)
+{
+  return (CRoot_Reflex_TYPE)(((Reflex::Type*)self)->TypeType());
+}
+
+void
+CRoot_Reflex_Type_Unload(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->Unload();
+}
+
+void
+CRoot_Reflex_Type_UpdateMembers(CRoot_Reflex_Type self)
+{
+  return ((Reflex::Type*)self)->UpdateMembers();
+}
+
+
+void
+CRoot_Reflex_Type_AddDataMember(CRoot_Reflex_Type self,
+                                CRoot_Reflex_Member dm)
+{
+  return ((Reflex::Type*)self)->AddDataMember(*((Reflex::Member*)dm));
+}
+
+
+CRoot_Reflex_Member
+CRoot_Reflex_Type_AddDataMember2(CRoot_Reflex_Type self,
+                                 const char* name,
+                                 CRoot_Reflex_Type type,
+                                 size_t offset,
+                                 unsigned int modifiers,
+                                 char *interpreterOffset)
+{
+  Reflex::Member mbr = ((Reflex::Type*)self)->AddDataMember
+    (name,
+     *((Reflex::Type*)type),
+     offset,
+     modifiers,
+     interpreterOffset);
+  return (CRoot_Reflex_Member)new Reflex::Member(mbr);
+}
+
+
+void
+CRoot_Reflex_Type_RemoveDataMember(CRoot_Reflex_Type self,
+                                   CRoot_Reflex_Member dm)
+{
+  return ((Reflex::Type*)self)->RemoveDataMember(*(Reflex::Member*)dm);
+}
+
+void
+CRoot_Reflex_Type_SetSize(CRoot_Reflex_Type self,
+                          size_t s)
+{
+  return ((Reflex::Type*)self)->SetSize(s);
+}
+
+CRoot_Reflex_REPRESTYPE
+CRoot_Reflex_Type_RepresType(CRoot_Reflex_Type self)
+{
+  return (CRoot_Reflex_REPRESTYPE)(((Reflex::Type*)self)->RepresType());
+}
+
+CRoot_Reflex_Member
+CRoot_Reflex_Member_new()
+{
+  Reflex::Member *mbr = new Reflex::Member;
+  return (CRoot_Reflex_Member)mbr;
+}
+
+void
+CRoot_Reflex_Member_delete(CRoot_Reflex_Member self)
+{
+  Reflex::Member *mbr = (Reflex::Member*)self;
+  delete mbr;
+  self = 0;
+}
+
+bool
+CRoot_Reflex_Member_IsDataMember(CRoot_Reflex_Member self)
+{
+  return ((Reflex::Member*)self)->IsDataMember();
+}
+
+bool
+CRoot_Reflex_Member_IsPrivate(CRoot_Reflex_Member self)
+{
+  return ((Reflex::Member*)self)->IsPrivate();
+}
+
+bool
+CRoot_Reflex_Member_IsProtected(CRoot_Reflex_Member self)
+{
+  return ((Reflex::Member*)self)->IsProtected();
+}
+
+bool
+CRoot_Reflex_Member_IsPublic(CRoot_Reflex_Member self)
+{
+  return ((Reflex::Member*)self)->IsPublic();
+}
+
+bool
+CRoot_Reflex_Member_IsTransient(CRoot_Reflex_Member self)
+{
+  return ((Reflex::Member*)self)->IsTransient();
+}
+
+bool
+CRoot_Reflex_Member_IsVirtual(CRoot_Reflex_Member self)
+{
+  return ((Reflex::Member*)self)->IsVirtual();
+}
+
+CRoot_Reflex_TYPE
+CRoot_Reflex_Member_MemberType(CRoot_Reflex_Member self)
+{
+  return (CRoot_Reflex_TYPE)((Reflex::Member*)self)->MemberType();
+}
+
+const char*
+CRoot_Reflex_Member_Name(CRoot_Reflex_Member self)
+{
+  return ((Reflex::Member*)self)->Name_c_str();
+}
+
+size_t
+CRoot_Reflex_Member_Offset(CRoot_Reflex_Member self)
+{
+  return ((Reflex::Member*)self)->Offset();
+}
+
+void
+CRoot_Reflex_Member_InterpreterOffset(CRoot_Reflex_Member self,
+                                      char *offset)
+{
+  return ((Reflex::Member*)self)->InterpreterOffset(offset);
+}
+
+CRoot_Reflex_Type
+CRoot_Reflex_Member_TypeOf(CRoot_Reflex_Member self)
+{
+  Reflex::Type t = ((Reflex::Member*)self)->TypeOf();
+  return (CRoot_Reflex_Type)new Reflex::Type(t);
+}
+
+void*
+CRoot_Reflex_Member_Stubcontext(CRoot_Reflex_Member self)
+{
+  return ((Reflex::Member*)self)->Stubcontext();
+}
+
+CRoot_Reflex_StubFunction
+CRoot_Reflex_Member_Stubfunction(CRoot_Reflex_Member self)
+{
+  return (CRoot_Reflex_StubFunction)((Reflex::Member*)self)->Stubfunction();
+}
+
+#include "Reflex/Builder/ReflexBuilder.h"
+
+CRoot_Reflex_Type
+CRoot_Reflex_PointerBuilder_new(CRoot_Reflex_Type t)
+{
+  Reflex::Type *ty = (Reflex::Type*)t;
+  Reflex::Type ty_ptr = Reflex::PointerBuilder(*ty);
+  return (CRoot_Reflex_Type)new Reflex::Type(ty_ptr);
+}
+
+CRoot_Reflex_Type
+CRoot_Reflex_ArrayBuilder_new(CRoot_Reflex_Type t,
+                              size_t n)
+{
+  Reflex::Type *ty = (Reflex::Type*)t;
+  Reflex::Type ty_arr = Reflex::ArrayBuilder(*ty, n);
+  return (CRoot_Reflex_Type)new Reflex::Type(ty_arr);
+}
+
+CRoot_Reflex_Type
+CRoot_Reflex_FunctionTypeBuilder_new(CRoot_Reflex_Type r)
+{
+  return (CRoot_Reflex_Type)new Reflex::Type
+    (Reflex::FunctionTypeBuilder(*(Reflex::Type*)r));
+}
+
+CRoot_Reflex_Type
+CRoot_Reflex_FunctionTypeBuilder_new1(CRoot_Reflex_Type r,
+                                      CRoot_Reflex_Type t0)
+{
+  return (CRoot_Reflex_Type)new Reflex::Type
+    (Reflex::FunctionTypeBuilder(*(Reflex::Type*)r,
+                                 *(Reflex::Type*)t0));
+}
+
+CRoot_Reflex_Type
+CRoot_Reflex_FunctionTypeBuilder_new2(CRoot_Reflex_Type r,
+                                      CRoot_Reflex_Type t0,
+                                      CRoot_Reflex_Type t1)
+{
+  return (CRoot_Reflex_Type)new Reflex::Type
+    (Reflex::FunctionTypeBuilder(*(Reflex::Type*)r,
+                                 *(Reflex::Type*)t0,
+                                 *(Reflex::Type*)t1));
+}
+
+
+CRoot_Reflex_Type
+CRoot_Reflex_FunctionTypeBuilder_new3(CRoot_Reflex_Type r,
+                                      CRoot_Reflex_Type t0,
+                                      CRoot_Reflex_Type t1,
+                                      CRoot_Reflex_Type t2)
+{
+  return (CRoot_Reflex_Type)new Reflex::Type
+    (Reflex::FunctionTypeBuilder(*(Reflex::Type*)r,
+                                 *(Reflex::Type*)t0,
+                                 *(Reflex::Type*)t1,
+                                 *(Reflex::Type*)t2));
+}
+
+CRoot_Reflex_ClassBuilder
+CRoot_Reflex_ClassBuilder_new(const char *name,
+                              void* typeinfo,
+                              size_t size,
+                              unsigned int modifiers,
+                              CRoot_Reflex_TYPE type)
+{
+  const std::type_info *ti = &typeid(void);
+  if (typeinfo) {
+    ti = (const std::type_info*)typeinfo;
+  }
+  Reflex::ClassBuilder * cb = new Reflex::ClassBuilder(name, *ti, size, modifiers, (Reflex::TYPE)type);
+  return (CRoot_Reflex_ClassBuilder)cb;
+}
+
+void
+CRoot_Reflex_ClassBuilder_delete(CRoot_Reflex_ClassBuilder self)
+{
+  Reflex::ClassBuilder *cb = (Reflex::ClassBuilder*)self;
+  delete cb; cb = 0;
+  self = 0;
+}
+
+void
+CRoot_Reflex_ClassBuilder_AddDataMember(CRoot_Reflex_ClassBuilder self,
+                                        CRoot_Reflex_Type type,
+                                        const char* name,
+                                        size_t offset,
+                                        unsigned int modifiers)
+{
+  Reflex::ClassBuilder *cb = (Reflex::ClassBuilder*)self;
+  cb->AddDataMember(*((Reflex::Type*)type), name, offset, modifiers);
+  //return (CRoot_Reflex_ClassBuilder)cb;
+}
+
+void
+CRoot_Reflex_ClassBuilder_AddFunctionMember(CRoot_Reflex_ClassBuilder self,
+                                            CRoot_Reflex_Type type,
+                                            const char *name,
+                                            CRoot_Reflex_StubFunction c_stubFP,
+                                            void *stubCtx,
+                                            const char *params,
+                                            unsigned int modifiers)
+{
+  Reflex::ClassBuilder *cb = (Reflex::ClassBuilder*)self;
+  Reflex::Type *typ = (Reflex::Type*)type;
+  Reflex::StubFunction stubFP = (Reflex::StubFunction)c_stubFP;
+  cb->AddFunctionMember(*typ,
+                        name,
+                        stubFP,
+                        stubCtx,
+                        params,
+                        modifiers);
+}
+
+CRoot_Reflex_Type
+CRoot_Reflex_ClassBuilder_ToType(CRoot_Reflex_ClassBuilder self)
+{
+  Reflex::Type t = ((Reflex::ClassBuilder*)self)->ToType();
+  return (CRoot_Reflex_Type)new Reflex::Type(t);
+}
+
+CRoot_Reflex_FunctionBuilder
+CRoot_Reflex_FunctionBuilder_new(CRoot_Reflex_Type c_type,
+                                 const char* name,
+                                 CRoot_Reflex_StubFunction c_stubFP,
+                                 void *stubCtx,
+                                 const char *params,
+                                 unsigned char modifiers)
+{
+  Reflex::Type *typ = (Reflex::Type*)c_type;
+  Reflex::StubFunction stubFP = (Reflex::StubFunction)c_stubFP;
+  Reflex::FunctionBuilder *fb = new Reflex::FunctionBuilder(*typ,
+                                                            name,
+                                                            stubFP,
+                                                            stubCtx,
+                                                            params,
+                                                            modifiers);
+  return (CRoot_Reflex_FunctionBuilder)fb;
+}
+
+void
+CRoot_Reflex_FunctionBuilder_delete(CRoot_Reflex_FunctionBuilder self)
+{
+  Reflex::FunctionBuilder *fb = (Reflex::FunctionBuilder*)self;
+  delete fb; fb = 0;
+  self = 0;
+}
+
+CRoot_Reflex_Member
+CRoot_Reflex_FunctionBuilder_ToMember(CRoot_Reflex_FunctionBuilder self)
+{
+  Reflex::Member mbr = ((Reflex::FunctionBuilder*)self)->ToMember();
+  return (CRoot_Reflex_Member)new Reflex::Member(mbr);
+}
+
+#include "Cintex/Cintex.h"
+void
+CRoot_Cintex_Enable()
+{
+  ROOT::Cintex::Cintex::Enable();
+  //ROOT::Cintex::Cintex::SetDebug(100000);
+}
+
+void
+CRoot_Cintex_SetDebug(int level)
+{
+  ROOT::Cintex::Cintex::SetDebug(level);
 }
 
