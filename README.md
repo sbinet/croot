@@ -5,11 +5,11 @@ a simple work-in-progress C-API binding to the C++ `ROOT` framework.
 
 the structure is quite simple:
 
-  //C++
-  TRootClass::SomeMethod(...)
+    //C++
+    TRootClass::SomeMethod(...)
 
-  /* CRoot */
-  CRoot_RootClass_SomeMethod(...)
+    /* CRoot */
+    CRoot_RootClass_SomeMethod(...)
 
 Constructors are named `CRoot_RootClass_new(...)` and destructors `CRoot_RootClass_delete(...)`
 
@@ -18,6 +18,6 @@ Constructors are named `CRoot_RootClass_new(...)` and destructors `CRoot_RootCla
 build instructions
 ------------------
 
-  $ ./waf configure
-  $ ./waf build
-  $ ./waf install
+    $ ./waf configure
+    $ ./waf build
+    $ ./waf install
