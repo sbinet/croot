@@ -289,6 +289,12 @@ CRoot_Chain_GetEntry(CRoot_Chain self,
   return ((TChain*)self)->GetEntry(entry, getall);
 }
 
+/* TBranch */
+char*
+CRoot_Branch_GetAddress(CRoot_Branch self)
+{
+  return ((TBranch*)self)->GetAddress();
+}
 
 /* TFile */
 CRoot_File

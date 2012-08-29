@@ -75,6 +75,10 @@ typedef void *CRoot_ObjArray;
 /* TBranch */
 typedef void *CRoot_Branch;
 
+CROOT_API
+char*
+CRoot_Branch_GetAddress(CRoot_Branch self);
+
 /* TTree */
 typedef void* CRoot_Tree;
 
