@@ -33,7 +33,15 @@ def build(ctx):
         use = "CERN_ROOT_SYSTEM",
         )
 
-    ctx.install_files('${PREFIX}/include', 'include/croot.h')
+    hdr_dir = ctx.path.find_dir('include')
+    hdrs = hdr_dir.ant_glob('**/*', dir=False)
+    
+    ctx.install_files(
+        '${PREFIX}/include',
+        hdrs,
+        cwd=hdr_dir,
+        relative_trick=True
+        )
 
     #ctx.recurse('examples')
     
