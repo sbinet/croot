@@ -8,6 +8,7 @@
 #include "TObject.h"
 #include "TObjArray.h"
 
+#include "TROOT.h"
 #include "TMath.h"
 #include "TRandom.h"
 
@@ -58,6 +59,15 @@ CRoot_Object_Print(CRoot_Object self,
                    CRoot_Option *option)
 {
   return ((TObject*)self)->Print((Option_t*)option);
+}
+
+/* TROOT */
+CRoot_File
+CRoot_ROOT_GetFile(CRoot_ROOT self,
+                   const char *name)
+{
+  TFile *f = ((TROOT*)self)->GetFile(name);
+  return (CRoot_File)f;
 }
 
 
@@ -1254,5 +1264,12 @@ void
 CRoot_Cintex_SetDebug(int level)
 {
   ROOT::Cintex::Cintex::SetDebug(level);
+}
+
+void __attribute__ ((constructor)) croot_init();
+
+void croot_init()
+{
+  CRoot_GRoot = (CRoot_ROOT)gROOT;
 }
 

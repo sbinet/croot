@@ -68,7 +68,6 @@ void
 CRoot_Object_Print(CRoot_Object self,
                    CRoot_Option *option);
 
-
 /* TObjArray */
 typedef void *CRoot_ObjArray;
 
@@ -293,6 +292,17 @@ CROOT_API
 int32_t
 CRoot_File_Write(CRoot_File self, 
                  const char *name, int32_t opt, int32_t bufsiz);
+
+/* TROOT */
+typedef void *CRoot_ROOT;
+
+/* The global ROOT object */
+CRoot_ROOT CRoot_GRoot;
+
+CROOT_API
+CRoot_File
+CRoot_ROOT_GetFile(CRoot_ROOT self,
+                   const char *name);
 
 /* TRandom */
 typedef void *CRoot_Random;
