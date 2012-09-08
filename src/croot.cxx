@@ -62,6 +62,8 @@ CRoot_Object_Print(CRoot_Object self,
 }
 
 /* TROOT */
+CRoot_ROOT CRoot_GRoot;
+
 CRoot_File
 CRoot_ROOT_GetFile(CRoot_ROOT self,
                    const char *name)
