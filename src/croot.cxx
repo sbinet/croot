@@ -61,8 +61,22 @@ CRoot_Object_Print(CRoot_Object self,
   return ((TObject*)self)->Print((Option_t*)option);
 }
 
+/* TObjArray */
+int64_t
+CRoot_ObjArray_GetSize(CRoot_ObjArray self)
+{
+  return int64_t(((TObjArray*)self)->GetSize());
+}
+
+CRoot_Object
+CRoot_ObjArray_At(CRoot_ObjArray self, int64_t idx)
+{
+  return (TObject*)(((TObject*)self)->At(idx));
+}
+
+
 /* TROOT */
-CRoot_ROOT CRoot_GRoot;
+//CRoot_ROOT CRoot_GRoot;
 
 CRoot_File
 CRoot_ROOT_GetFile(CRoot_ROOT self,

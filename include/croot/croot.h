@@ -71,6 +71,14 @@ CRoot_Object_Print(CRoot_Object self,
 /* TObjArray */
 typedef void *CRoot_ObjArray;
 
+CROOT_API
+int64_t
+CRoot_ObjArray_GetSize(CRoot_ObjArray self);
+
+CROOT_API
+CRoot_Object
+CRoot_ObjArray_At(CRoot_ObjArray, int64_t idx);
+
 /* TBranch */
 typedef void *CRoot_Branch;
 
@@ -297,7 +305,7 @@ CRoot_File_Write(CRoot_File self,
 typedef void *CRoot_ROOT;
 
 /* The global ROOT object */
-extern CRoot_ROOT CRoot_GRoot;
+static CRoot_ROOT CRoot_GRoot;
 
 CROOT_API
 CRoot_File
