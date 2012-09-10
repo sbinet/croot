@@ -77,7 +77,11 @@ CRoot_ObjArray_GetSize(CRoot_ObjArray self);
 
 CROOT_API
 CRoot_Object
-CRoot_ObjArray_At(CRoot_ObjArray, int64_t idx);
+CRoot_ObjArray_At(CRoot_ObjArray self, int64_t idx);
+
+CROOT_API
+const char*
+CRoot_ObjArray_GetName(CRoot_ObjArray self);
 
 /* TBranch */
 typedef void *CRoot_Branch;

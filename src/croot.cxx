@@ -74,6 +74,11 @@ CRoot_ObjArray_At(CRoot_ObjArray self, int64_t idx)
   return (TObject*)(((TObjArray*)self)->At(idx));
 }
 
+const char*
+CRoot_ObjArray_GetName(CRoot_ObjArray self)
+{
+  return ((TObjArray*)self)->GetName();
+}
 
 /* TROOT */
 #ifdef __linux
