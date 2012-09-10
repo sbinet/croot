@@ -71,7 +71,7 @@ CRoot_ObjArray_GetSize(CRoot_ObjArray self)
 CRoot_Object
 CRoot_ObjArray_At(CRoot_ObjArray self, int64_t idx)
 {
-  return (TObject*)(((TObject*)self)->At(idx));
+  return (TObject*)(((TObjArray*)self)->At(idx));
 }
 
 
