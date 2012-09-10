@@ -2,8 +2,10 @@
 
 #include "TBranch.h"
 #include "TBranchElement.h"
+#include "TLeaf.h"
 #include "TTree.h"
 #include "TChain.h"
+
 #include "TFile.h"
 
 #include "TObject.h"
@@ -154,6 +156,13 @@ CRoot_Tree_GetEntry(CRoot_Tree self,
                     int64_t entry, int32_t getall)
 {
   return ((TTree*)self)->GetEntry(entry, getall);
+}
+
+CRoot_Leaf
+CRoot_Tree_GetLeaf(CRoot_Tree self,
+                   const char *name)
+{
+  return (CRoot_Leaf)(((TTree*)self)->GetLeaf(name));
 }
 
 CRoot_ObjArray
@@ -335,6 +344,31 @@ const char*
 CRoot_Branch_GetClassName(CRoot_Branch self)
 {
   return ((TBranch*)self)->GetClassName();
+}
+
+/* TLeaf */
+int
+CRoot_Leaf_GetLenStatic(CRoot_Leaf self)
+{
+  return ((TLeaf*)self)->GetLenStatic();
+}
+
+CRoot_Leaf
+CRoot_Leaf_GetLeafCount(CRoot_Leaf self)
+{
+  return (CRoot_Leaf)(((TLeaf*)self)->GetLeafCount());
+}
+
+const char*
+CRoot_Leaf_GetTypeName(CRoot_Leaf self)
+{
+  return ((TLeaf*)self)->GetTypeName();
+}
+
+void*
+CRoot_Leaf_GetValuePointer(CRoot_Leaf self)
+{
+  return ((TLeaf*)self)->GetValuePointer();
 }
 
 /* TBranchElement */

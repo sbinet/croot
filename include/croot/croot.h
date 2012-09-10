@@ -105,6 +105,25 @@ CROOT_API
 const char*
 CRoot_BranchElement_GetClassName(CRoot_BranchElement self);
 
+/* TLeaf */
+typedef void *CRoot_Leaf;
+
+CROOT_API
+int
+CRoot_Leaf_GetLenStatic(CRoot_Leaf self);
+
+CROOT_API
+CRoot_Leaf
+CRoot_Leaf_GetLeafCount(CRoot_Leaf self);
+
+CROOT_API
+const char*
+CRoot_Leaf_GetTypeName(CRoot_Leaf self);
+
+CROOT_API
+void*
+CRoot_Leaf_GetValuePointer(CRoot_Leaf self);
+
 /* TTree */
 typedef void* CRoot_Tree;
 
@@ -145,6 +164,11 @@ CROOT_API
 int32_t
 CRoot_Tree_GetEntry(CRoot_Tree self,
                     int64_t entry, int32_t getall);
+
+CROOT_API
+CRoot_Leaf
+CRoot_Tree_GetLeaf(CRoot_Tree self,
+                   const char *name);
 
 CROOT_API
 CRoot_ObjArray
