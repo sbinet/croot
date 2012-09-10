@@ -76,7 +76,10 @@ CRoot_ObjArray_At(CRoot_ObjArray self, int64_t idx)
 
 
 /* TROOT */
-//CRoot_ROOT CRoot_GRoot;
+#ifdef __linux
+CRoot_ROOT CRoot_GRoot;
+#else
+#endif
 
 CRoot_File
 CRoot_ROOT_GetFile(CRoot_ROOT self,
