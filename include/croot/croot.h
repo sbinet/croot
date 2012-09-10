@@ -90,6 +90,21 @@ CROOT_API
 char*
 CRoot_Branch_GetAddress(CRoot_Branch self);
 
+CROOT_API
+const char*
+CRoot_Branch_GetClassName(CRoot_Branch self);
+
+/* TBranchElement */
+typedef void *CRoot_BranchElement;
+
+CROOT_API
+char*
+CRoot_BranchElement_GetAddress(CRoot_BranchElement self);
+
+CROOT_API
+const char*
+CRoot_BranchElement_GetClassName(CRoot_BranchElement self);
+
 /* TTree */
 typedef void* CRoot_Tree;
 

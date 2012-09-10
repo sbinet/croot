@@ -1,6 +1,7 @@
 #include "croot/croot.h"
 
 #include "TBranch.h"
+#include "TBranchElement.h"
 #include "TTree.h"
 #include "TChain.h"
 #include "TFile.h"
@@ -328,6 +329,25 @@ char*
 CRoot_Branch_GetAddress(CRoot_Branch self)
 {
   return ((TBranch*)self)->GetAddress();
+}
+
+const char*
+CRoot_Branch_GetClassName(CRoot_Branch self)
+{
+  return ((TBranch*)self)->GetClassName();
+}
+
+/* TBranchElement */
+char*
+CRoot_BranchElement_GetAddress(CRoot_BranchElement self)
+{
+  return ((TBranchElement*)self)->GetAddress();
+}
+
+const char*
+CRoot_BranchElement_GetClassName(CRoot_BranchElement self)
+{
+  return ((TBranchElement*)self)->GetClassName();
 }
 
 /* TFile */
