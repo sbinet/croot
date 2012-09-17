@@ -790,6 +790,7 @@ CRoot_Reflex_Type
 CRoot_Reflex_Type_new(const char* name, unsigned int modifiers)
 {
   Reflex::Type t = Reflex::TypeBuilder(name, modifiers);
+  // FIXME: leak
   return (CRoot_Reflex_Type)new Reflex::Type(t);
 }
 
@@ -819,6 +820,7 @@ CRoot_Reflex_Type
 CRoot_Reflex_Type_ByName(const char *name)
 {
   Reflex::Type t = Reflex::Type::ByName(std::string(name));
+  // FIXME: leak
   return (CRoot_Reflex_Type)new Reflex::Type(t);
 }
 
@@ -830,6 +832,7 @@ CRoot_Reflex_Type_FunctionMemberAt(CRoot_Reflex_Type self,
 {
   Reflex::Member mbr = ((Reflex::Type*)self)->FunctionMemberAt
     (nth, (Reflex::EMEMBERQUERY)inh);
+  // FIXME: leak
   return (CRoot_Reflex_Member)new Reflex::Member(mbr);
 }
 
@@ -847,6 +850,7 @@ CRoot_Reflex_Type_DataMemberAt(CRoot_Reflex_Type self,
 {
   Reflex::Member mbr = ((Reflex::Type*)self)->DataMemberAt
     (nth, (Reflex::EMEMBERQUERY)inh);
+  // FIXME: leak
   return (CRoot_Reflex_Member)new Reflex::Member(mbr);
 }
 
@@ -959,6 +963,7 @@ CRoot_Reflex_Type_MemberAt(CRoot_Reflex_Type self,
                            CRoot_Reflex_EMEMBERQUERY inh)
 {
   Reflex::Member mbr = ((Reflex::Type*)self)->MemberAt(nth, (Reflex::EMEMBERQUERY)inh);
+  // FIXME: leak
   return (CRoot_Reflex_Member)new Reflex::Member(mbr);
 }
 
@@ -977,11 +982,19 @@ CRoot_Reflex_Type_Name(CRoot_Reflex_Type self)
   return ((Reflex::Type*)self)->Name_c_str();
 }
 
+CRoot_Reflex_PropertyList
+CRoot_Reflex_Type_Properties(CRoot_Reflex_Type self)
+{
+  Reflex::PropertyList plist = ((Reflex::Type*)self)->Properties();
+  // FIXME: leak
+  return (CRoot_Reflex_PropertyList)new Reflex::PropertyList(plist);
+}
 
 CRoot_Reflex_Type
 CRoot_Reflex_Type_RawType(CRoot_Reflex_Type self)
 {
   Reflex::Type tt = ((Reflex::Type*)self)->RawType();
+  // FIXME: leak
   return (CRoot_Reflex_Type)new Reflex::Type(tt);
 }
 
@@ -996,6 +1009,7 @@ CRoot_Reflex_Type
 CRoot_Reflex_Type_ToType(CRoot_Reflex_Type self)
 {
   Reflex::Type t = ((Reflex::Type*)self)->ToType();
+  // FIXME: leak
   return (CRoot_Reflex_Type)new Reflex::Type(t);
 }
 
@@ -1004,6 +1018,7 @@ CRoot_Reflex_Type
 CRoot_Reflex_Type_TypeAt(size_t nth)
 {
   Reflex::Type t = Reflex::Type::TypeAt(nth);
+  // FIXME: leak
   return (CRoot_Reflex_Type)new Reflex::Type(t);
 }
 
@@ -1055,6 +1070,7 @@ CRoot_Reflex_Type_AddDataMember2(CRoot_Reflex_Type self,
      offset,
      modifiers,
      interpreterOffset);
+  // FIXME: leak
   return (CRoot_Reflex_Member)new Reflex::Member(mbr);
 }
 
@@ -1083,6 +1099,7 @@ CRoot_Reflex_Member
 CRoot_Reflex_Member_new()
 {
   Reflex::Member *mbr = new Reflex::Member;
+  // FIXME: leak
   return (CRoot_Reflex_Member)mbr;
 }
 
@@ -1159,6 +1176,7 @@ CRoot_Reflex_Type
 CRoot_Reflex_Member_TypeOf(CRoot_Reflex_Member self)
 {
   Reflex::Type t = ((Reflex::Member*)self)->TypeOf();
+  // FIXME: leak
   return (CRoot_Reflex_Type)new Reflex::Type(t);
 }
 
@@ -1181,6 +1199,7 @@ CRoot_Reflex_PointerBuilder_new(CRoot_Reflex_Type t)
 {
   Reflex::Type *ty = (Reflex::Type*)t;
   Reflex::Type ty_ptr = Reflex::PointerBuilder(*ty);
+  // FIXME: leak
   return (CRoot_Reflex_Type)new Reflex::Type(ty_ptr);
 }
 
@@ -1190,12 +1209,14 @@ CRoot_Reflex_ArrayBuilder_new(CRoot_Reflex_Type t,
 {
   Reflex::Type *ty = (Reflex::Type*)t;
   Reflex::Type ty_arr = Reflex::ArrayBuilder(*ty, n);
+  // FIXME: leak
   return (CRoot_Reflex_Type)new Reflex::Type(ty_arr);
 }
 
 CRoot_Reflex_Type
 CRoot_Reflex_FunctionTypeBuilder_new(CRoot_Reflex_Type r)
 {
+  // FIXME: leak
   return (CRoot_Reflex_Type)new Reflex::Type
     (Reflex::FunctionTypeBuilder(*(Reflex::Type*)r));
 }
@@ -1204,6 +1225,7 @@ CRoot_Reflex_Type
 CRoot_Reflex_FunctionTypeBuilder_new1(CRoot_Reflex_Type r,
                                       CRoot_Reflex_Type t0)
 {
+  // FIXME: leak
   return (CRoot_Reflex_Type)new Reflex::Type
     (Reflex::FunctionTypeBuilder(*(Reflex::Type*)r,
                                  *(Reflex::Type*)t0));
@@ -1214,6 +1236,7 @@ CRoot_Reflex_FunctionTypeBuilder_new2(CRoot_Reflex_Type r,
                                       CRoot_Reflex_Type t0,
                                       CRoot_Reflex_Type t1)
 {
+  // FIXME: leak
   return (CRoot_Reflex_Type)new Reflex::Type
     (Reflex::FunctionTypeBuilder(*(Reflex::Type*)r,
                                  *(Reflex::Type*)t0,
@@ -1227,6 +1250,7 @@ CRoot_Reflex_FunctionTypeBuilder_new3(CRoot_Reflex_Type r,
                                       CRoot_Reflex_Type t1,
                                       CRoot_Reflex_Type t2)
 {
+  // FIXME: leak
   return (CRoot_Reflex_Type)new Reflex::Type
     (Reflex::FunctionTypeBuilder(*(Reflex::Type*)r,
                                  *(Reflex::Type*)t0,
@@ -1293,6 +1317,7 @@ CRoot_Reflex_Type
 CRoot_Reflex_ClassBuilder_ToType(CRoot_Reflex_ClassBuilder self)
 {
   Reflex::Type t = ((Reflex::ClassBuilder*)self)->ToType();
+  // FIXME: leak
   return (CRoot_Reflex_Type)new Reflex::Type(t);
 }
 
@@ -1306,6 +1331,7 @@ CRoot_Reflex_FunctionBuilder_new(CRoot_Reflex_Type c_type,
 {
   Reflex::Type *typ = (Reflex::Type*)c_type;
   Reflex::StubFunction stubFP = (Reflex::StubFunction)c_stubFP;
+  // FIXME: leak
   Reflex::FunctionBuilder *fb = new Reflex::FunctionBuilder(*typ,
                                                             name,
                                                             stubFP,
@@ -1327,7 +1353,16 @@ CRoot_Reflex_Member
 CRoot_Reflex_FunctionBuilder_ToMember(CRoot_Reflex_FunctionBuilder self)
 {
   Reflex::Member mbr = ((Reflex::FunctionBuilder*)self)->ToMember();
+  // FIXME: leak
   return (CRoot_Reflex_Member)new Reflex::Member(mbr);
+}
+
+size_t
+CRoot_Reflex_PropertyList_AddProperty(CRoot_Reflex_PropertyList self,
+                                      const char *key,
+                                      const char *value)
+{
+  return ((Reflex::PropertyList*)self)->AddProperty(key, value);
 }
 
 #include "Cintex/Cintex.h"

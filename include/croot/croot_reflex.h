@@ -8,6 +8,7 @@ extern "C" {
 /* --- Reflex API --- */
 typedef void* CRoot_Reflex_Type;
 typedef void* CRoot_Reflex_Member;
+typedef void* CRoot_Reflex_PropertyList;
 typedef void* CRoot_Reflex_Scope;
 typedef void* CRoot_Reflex_ClassBuilder;
 typedef void* CRoot_Reflex_FunctionBuilder;
@@ -270,6 +271,10 @@ const char*
 CRoot_Reflex_Type_Name(CRoot_Reflex_Type self);
 
 CROOT_API
+CRoot_Reflex_PropertyList
+CRoot_Reflex_Type_Properties(CRoot_Reflex_Type self);
+
+CROOT_API
 CRoot_Reflex_Type
 CRoot_Reflex_Type_RawType(CRoot_Reflex_Type self);
 
@@ -474,6 +479,13 @@ CRoot_Reflex_FunctionBuilder_delete(CRoot_Reflex_FunctionBuilder self);
 CROOT_API
 CRoot_Reflex_Member
 CRoot_Reflex_FunctionBuilder_ToMember(CRoot_Reflex_FunctionBuilder self);
+
+
+CROOT_API
+size_t
+CRoot_Reflex_PropertyList_AddProperty(CRoot_Reflex_PropertyList self,
+                                      const char *key,
+                                      const char *value);
 
 #ifdef __cplusplus
 }
