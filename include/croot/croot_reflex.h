@@ -459,6 +459,12 @@ CRoot_Reflex_ClassBuilder_AddFunctionMember(CRoot_Reflex_ClassBuilder self,
                                             unsigned int modifiers);
 
 CROOT_API
+void
+CRoot_Reflex_ClassBuilder_AddProperty(CRoot_Reflex_ClassBuilder self,
+                                      const char *key,
+                                      const char *value);
+
+CROOT_API
 CRoot_Reflex_Type
 CRoot_Reflex_ClassBuilder_ToType(CRoot_Reflex_ClassBuilder self);
 
