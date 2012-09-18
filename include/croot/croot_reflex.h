@@ -384,6 +384,10 @@ CRoot_Reflex_Member_InterpreterOffset(CRoot_Reflex_Member self,
                                       char *offset);
 
 CROOT_API
+CRoot_Reflex_PropertyList
+CRoot_Reflex_Member_Properties(CRoot_Reflex_Member self);
+
+CROOT_API
 CRoot_Reflex_Type
 CRoot_Reflex_Member_TypeOf(CRoot_Reflex_Member self);
 
@@ -394,6 +398,20 @@ CRoot_Reflex_Member_Stubcontext(CRoot_Reflex_Member self);
 CROOT_API
 CRoot_Reflex_StubFunction
 CRoot_Reflex_Member_Stubfunction(CRoot_Reflex_Member self);
+
+/* propertylist api */
+CROOT_API
+const char*
+CRoot_Reflex_PropertyList_PropertyAsString(CRoot_Reflex_PropertyList self,
+                                           size_t idx);
+
+CROOT_API
+size_t
+CRoot_Reflex_PropertyList_PropertyCount(CRoot_Reflex_PropertyList self);
+
+CROOT_API
+const char*
+CRoot_Reflex_PropertyList_PropertyKeys(CRoot_Reflex_PropertyList self);
 
 /* type builder API */
 

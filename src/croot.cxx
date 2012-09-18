@@ -1172,6 +1172,14 @@ CRoot_Reflex_Member_InterpreterOffset(CRoot_Reflex_Member self,
   return ((Reflex::Member*)self)->InterpreterOffset(offset);
 }
 
+CRoot_Reflex_PropertyList
+CRoot_Reflex_Member_Properties(CRoot_Reflex_Member self)
+{
+  Reflex::PropertyList plist = ((Reflex::Member*)self)->Properties();
+  //FIXME: leak
+  return (CRoot_Reflex_PropertyList)new Reflex::PropertyList(plist);
+}
+
 CRoot_Reflex_Type
 CRoot_Reflex_Member_TypeOf(CRoot_Reflex_Member self)
 {
@@ -1190,6 +1198,27 @@ CRoot_Reflex_StubFunction
 CRoot_Reflex_Member_Stubfunction(CRoot_Reflex_Member self)
 {
   return (CRoot_Reflex_StubFunction)((Reflex::Member*)self)->Stubfunction();
+}
+
+const char*
+CRoot_Reflex_PropertyList_PropertyAsString(CRoot_Reflex_PropertyList self,
+                                           size_t idx)
+{
+  std::string str = ((Reflex::PropertyList*)self)->PropertyAsString(idx);
+  return strdup(str.c_str());
+}
+
+size_t
+CRoot_Reflex_PropertyList_PropertyCount(CRoot_Reflex_PropertyList self)
+{
+  return ((Reflex::PropertyList*)self)->PropertyCount();
+}
+
+const char*
+CRoot_Reflex_PropertyList_PropertyKeys(CRoot_Reflex_PropertyList self)
+{
+  std::string str = ((Reflex::PropertyList*)self)->PropertyKeys();
+  return strdup(str.c_str());
 }
 
 #include "Reflex/Builder/ReflexBuilder.h"
@@ -1316,8 +1345,9 @@ CRoot_Reflex_ClassBuilder_AddFunctionMember(CRoot_Reflex_ClassBuilder self,
 void
 CRoot_Reflex_ClassBuilder_AddProperty(CRoot_Reflex_ClassBuilder self,
                                       const char *key,
-                                      const char *value)
+                                      const char *val)
 {
+  std::string value(val); // otherwise C++ type conversions rules confuse Reflex::Any...
   ((Reflex::ClassBuilder*)self)->AddProperty(key, value);
 }
 
@@ -1373,10 +1403,13 @@ CRoot_Reflex_PropertyList_AddProperty(CRoot_Reflex_PropertyList self,
   return ((Reflex::PropertyList*)self)->AddProperty(key, value);
 }
 
+void croot_reflex_init();
+
 #include "Cintex/Cintex.h"
 void
 CRoot_Cintex_Enable()
 {
+  croot_reflex_init();
   ROOT::Cintex::Cintex::Enable();
   //ROOT::Cintex::Cintex::SetDebug(100000);
 }
@@ -1385,6 +1418,31 @@ void
 CRoot_Cintex_SetDebug(int level)
 {
   ROOT::Cintex::Cintex::SetDebug(level);
+}
+
+//#include "Reflex/Builder/ReflexBuilder.h"
+namespace {
+  template <typename T>
+  void
+  croot_reflex_declfundamental(const char *name) {
+    //Reflex::Type tt = Reflex::Type::ByTypeInfo(typeid(T));
+    //FIXME: leak
+    Reflex::TypedefBuilder<T> tmp(name);
+  }
+}
+
+void croot_reflex_init() {
+
+  // initialize <stdint.h> types
+  ::croot_reflex_declfundamental<int8_t>("int8_t");
+  ::croot_reflex_declfundamental<int16_t>("int16_t");
+  ::croot_reflex_declfundamental<int32_t>("int32_t");
+  ::croot_reflex_declfundamental<int64_t>("int64_t");
+
+  ::croot_reflex_declfundamental<uint8_t>("uint8_t");
+  ::croot_reflex_declfundamental<uint16_t>("uint16_t");
+  ::croot_reflex_declfundamental<uint32_t>("uint32_t");
+  ::croot_reflex_declfundamental<uint64_t>("uint64_t");
 }
 
 void __attribute__ ((constructor)) croot_init();
