@@ -1424,9 +1424,7 @@ CRoot_Cintex_SetDebug(int level)
 namespace {
   template <typename T>
   void
-  croot_reflex_declfundamental(const char *name) {
-    //Reflex::Type tt = Reflex::Type::ByTypeInfo(typeid(T));
-    //FIXME: leak
+  croot_reflex_add_typedef(const char *name) {
     Reflex::TypedefBuilder<T> tmp(name);
   }
 }
@@ -1434,15 +1432,15 @@ namespace {
 void croot_reflex_init() {
 
   // initialize <stdint.h> types
-  ::croot_reflex_declfundamental<int8_t>("int8_t");
-  ::croot_reflex_declfundamental<int16_t>("int16_t");
-  ::croot_reflex_declfundamental<int32_t>("int32_t");
-  ::croot_reflex_declfundamental<int64_t>("int64_t");
+  ::croot_reflex_add_typedef<int8_t>("int8_t");
+  ::croot_reflex_add_typedef<int16_t>("int16_t");
+  ::croot_reflex_add_typedef<int32_t>("int32_t");
+  ::croot_reflex_add_typedef<int64_t>("int64_t");
 
-  ::croot_reflex_declfundamental<uint8_t>("uint8_t");
-  ::croot_reflex_declfundamental<uint16_t>("uint16_t");
-  ::croot_reflex_declfundamental<uint32_t>("uint32_t");
-  ::croot_reflex_declfundamental<uint64_t>("uint64_t");
+  ::croot_reflex_add_typedef<uint8_t>("uint8_t");
+  ::croot_reflex_add_typedef<uint16_t>("uint16_t");
+  ::croot_reflex_add_typedef<uint32_t>("uint32_t");
+  ::croot_reflex_add_typedef<uint64_t>("uint64_t");
 }
 
 void __attribute__ ((constructor)) croot_init();
