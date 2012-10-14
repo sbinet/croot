@@ -29,6 +29,7 @@ def build(ctx):
         target  = 'croot',
         includes= ['include',],
         export_includes = ['include'],
+        cxxflags = ['-O2', '-Wall'],
         lib = "Reflex Cintex dl",
         use = "CERN_ROOT_SYSTEM",
         )
