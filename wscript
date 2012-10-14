@@ -77,7 +77,7 @@ def write_pkgcfg(task):
     Description: a simple work-in-progress C-API binding to the C++ ROOT framework.
     URL: https://github.com/sbinet/croot
     Version: %(CROOT_VERSION)s
-    Cflags: -std=c99 -I%(PREFIX)s/include
+    Cflags: -I%(PREFIX)s/include
     Libs: -L${libdir} -lcroot
     """ % dict(
         PREFIX=task.env.PREFIX, 
