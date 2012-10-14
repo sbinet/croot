@@ -36,7 +36,10 @@ def build(ctx):
 
     hdr_dir = ctx.path.find_dir('include')
     hdrs = hdr_dir.ant_glob('**/*', dir=False)
-    
+
+    from os.path import join as pjoin
+    ctx(rule=write_pkgcfg, target="croot.pc", install_path=pjoin(ctx.env.LIBDIR, "pkgconfig"), always=True)
+
     ctx.install_files(
         '${PREFIX}/include',
         hdrs,
@@ -45,4 +48,54 @@ def build(ctx):
         )
 
     #ctx.recurse('examples')
-    
+
+def write_pkgcfg(task):
+    def libstr(use):
+        s = []
+        if task.env["LIBPATH_"+use]:
+            s.extend("-L%s"%l for l in task.env["LIBPATH_"+use])
+            s.extend("-l%s"%l for l in task.env["LIB_"+use])
+        return " ".join(s)
+
+    def cppstr(use):
+        s = []
+        s.extend(task.env.get_flat("CPPFLAGS_"+use).split())
+        s.extend("-I"+i for i in task.env.get_flat("INCLUDES_"+use).split())
+        return " ".join(s)
+
+    lines = []
+    from textwrap import dedent
+    lines.append(dedent("""
+    prefix=%(PREFIX)s
+    exec_prefix=${prefix}
+    includedir=${prefix}/include
+    libdir=%(LIBDIR)s
+    CXX=%(CXX)s
+    git_describe=%(GIT_VERSION)s
+
+    Name: croot
+    Description: a simple work-in-progress C-API binding to the C++ ROOT framework.
+    URL: https://github.com/sbinet/croot
+    Version: %(CROOT_VERSION)s
+    Cflags: -std=c99 -I%(PREFIX)s/include
+    Libs: -L${libdir} -lcroot
+    """ % dict(
+        PREFIX=task.env.PREFIX, 
+        LIBDIR=task.env.LIBDIR, 
+        CXX=task.env.CXX[0], 
+        CROOT_VERSION='0.0.1', 
+        GIT_VERSION=get_git_version(),
+    )))
+
+    task.outputs[0].write("\n".join(lines))
+    return 0
+
+def get_git_version():
+    try:
+        from commands import getstatusoutput
+    except ImportError: # py3
+        from subprocess import getstatusoutput
+    status, output = getstatusoutput("git describe --dirty")
+    if status: return "unknown"
+    return output
+
