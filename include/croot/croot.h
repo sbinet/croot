@@ -348,11 +348,7 @@ CRoot_File_Write(CRoot_File self,
 typedef void *CRoot_ROOT;
 
 /* The global ROOT object */
-#ifdef __linux
-  extern CRoot_ROOT CRoot_GRoot;
-#else /* darwin */
-static CRoot_ROOT CRoot_GRoot;
-#endif
+extern CRoot_ROOT CRoot_GRoot;
 
 CROOT_API
 CRoot_File

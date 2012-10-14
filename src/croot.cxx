@@ -84,10 +84,7 @@ CRoot_ObjArray_GetName(CRoot_ObjArray self)
 }
 
 /* TROOT */
-#ifdef __linux
 CRoot_ROOT CRoot_GRoot;
-#else
-#endif
 
 CRoot_File
 CRoot_ROOT_GetFile(CRoot_ROOT self,
