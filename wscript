@@ -47,7 +47,8 @@ def build(ctx):
         relative_trick=True
         )
 
-    ctx.recurse('examples')
+    if ctx.env.DO_TEST:
+        ctx.recurse('examples', name='build')
 
 def write_pkgcfg(task):
     def libstr(use):
