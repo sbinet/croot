@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "croot.h"
+#include "croot/croot.h"
 
 /* example of a Tree where branches are variable length arrays
  * a second tree is created and filled in parallel.

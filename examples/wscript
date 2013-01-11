@@ -13,27 +13,27 @@ def configure(ctx):
     ctx.load('compiler_cxx')
 
     ctx.env.append_unique('CFLAGS', ['-std=c99'])
-    
+
 def build(ctx):
 
     ctx(features='c cprogram',
         source  = 'ex_01.c',
         target  = 'croot-ex-01',
-        lib     = 'croot',
+        use     = 'croot',
         cflags  = ['-std=c99'],
         )
 
     ctx(features='c cprogram',
         source  = 'ex_tree_00.c',
         target  = 'croot-ex-tree-00',
-        lib     = 'croot',
+        use     = 'croot',
         cflags  = ['-std=c99'],
         )
 
     ctx(features='c cprogram',
         source  = 'ex_tree_03.c',
         target  = 'croot-ex-tree-03',
-        lib     = 'croot',
+        use     = 'croot',
         cflags  = ['-std=c99'],
         )
 

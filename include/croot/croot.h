@@ -572,6 +572,7 @@ CRoot_Cint_Tag_MemVar_Reset();
 }
 #endif
 
+#include "croot/croot_hist.h"
 #include "croot/croot_reflex.h"
 #include "croot/croot_cintex.h"
 

@@ -25,11 +25,11 @@ def build(ctx):
 
     ctx(features='cxx cxxshlib',
         name    = 'croot',
-        source  = 'src/croot.cxx',
+        source  = 'src/croot.cxx src/croot_hist.cxx',
         target  = 'croot',
         includes= ['include',],
         export_includes = ['include'],
-        cxxflags = ['-O2', '-Wall'],
+        cxxflags = ['-O2', '-Wall', '-W', '-Werror',],
         lib = "Reflex Cintex dl",
         use = "CERN_ROOT_SYSTEM",
         )
@@ -47,7 +47,7 @@ def build(ctx):
         relative_trick=True
         )
 
-    #ctx.recurse('examples')
+    ctx.recurse('examples')
 
 def write_pkgcfg(task):
     def libstr(use):
